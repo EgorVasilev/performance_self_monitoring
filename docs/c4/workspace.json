@@ -1,0 +1,699 @@
+{
+  "configuration" : {
+    "scope" : "SoftwareSystem"
+  },
+  "description" : "Description",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedAgent" : "structurizr-ui",
+  "lastModifiedDate" : "2024-12-08T14:15:42Z",
+  "model" : {
+    "people" : [ {
+      "id" : "1",
+      "location" : "Unspecified",
+      "name" : "User",
+      "properties" : {
+        "structurizr.dsl.identifier" : "user"
+      },
+      "relationships" : [ {
+        "description" : "Reads any user's performance summary",
+        "destinationId" : "5",
+        "id" : "6",
+        "sourceId" : "1",
+        "tags" : "Relationship",
+        "technology" : "Web Browser"
+      }, {
+        "description" : "Reads any user's performance summary",
+        "destinationId" : "3",
+        "id" : "7",
+        "linkedRelationshipId" : "6",
+        "sourceId" : "1",
+        "technology" : "Web Browser"
+      }, {
+        "description" : "Reads any user's performance summary",
+        "destinationId" : "2",
+        "id" : "8",
+        "linkedRelationshipId" : "6",
+        "sourceId" : "1",
+        "technology" : "Web Browser"
+      }, {
+        "description" : "Sets up dashboard widgets",
+        "destinationId" : "9",
+        "id" : "10",
+        "sourceId" : "1",
+        "tags" : "Relationship",
+        "technology" : "Web Browser"
+      }, {
+        "description" : "Reads any user's contests statistics or reads/updates its own",
+        "destinationId" : "11",
+        "id" : "12",
+        "sourceId" : "1",
+        "tags" : "Relationship",
+        "technology" : "Web Browser/HTML forms"
+      }, {
+        "description" : "Reads the documentation",
+        "destinationId" : "15",
+        "id" : "16",
+        "sourceId" : "1",
+        "tags" : "Relationship",
+        "technology" : "Web Browser"
+      }, {
+        "description" : "Reads the documentation",
+        "destinationId" : "13",
+        "id" : "17",
+        "linkedRelationshipId" : "16",
+        "sourceId" : "1",
+        "technology" : "Web Browser"
+      } ],
+      "tags" : "Element,Person"
+    } ],
+    "softwareSystems" : [ {
+      "containers" : [ {
+        "components" : [ {
+          "description" : "Prepares and provides HTML on demand, rest of static resources (imgs, CSS, JS etc) and routing",
+          "documentation" : { },
+          "id" : "4",
+          "name" : "Server",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ss.wa.server"
+          },
+          "relationships" : [ {
+            "description" : "CRUD via REST",
+            "destinationId" : "14",
+            "id" : "28",
+            "sourceId" : "4",
+            "tags" : "Relationship",
+            "technology" : "HTTP/JSON"
+          }, {
+            "description" : "CRUD via REST",
+            "destinationId" : "13",
+            "id" : "29",
+            "linkedRelationshipId" : "28",
+            "sourceId" : "4",
+            "technology" : "HTTP/JSON"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "TypeScript, Node.js, React"
+        }, {
+          "documentation" : { },
+          "group" : "Pages/Routes",
+          "id" : "5",
+          "name" : "Dashboard",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ss.wa.dashboard"
+          },
+          "relationships" : [ {
+            "description" : "Gets HTML and static resources",
+            "destinationId" : "4",
+            "id" : "25",
+            "sourceId" : "5",
+            "tags" : "Relationship",
+            "technology" : "HTTP/Stream"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "TypeScript, React"
+        }, {
+          "documentation" : { },
+          "group" : "Pages/Routes",
+          "id" : "9",
+          "name" : "Settings",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ss.wa.settings"
+          },
+          "relationships" : [ {
+            "description" : "Gets HTML and static resources",
+            "destinationId" : "4",
+            "id" : "26",
+            "sourceId" : "9",
+            "tags" : "Relationship",
+            "technology" : "HTTP/Stream"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "TypeScript, React"
+        }, {
+          "documentation" : { },
+          "group" : "Pages/Routes",
+          "id" : "11",
+          "name" : "Contests",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ss.wa.contests"
+          },
+          "relationships" : [ {
+            "description" : "Gets HTML and static resources",
+            "destinationId" : "4",
+            "id" : "27",
+            "sourceId" : "11",
+            "tags" : "Relationship",
+            "technology" : "HTTP/Stream"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "TypeScript, React"
+        } ],
+        "description" : "Provides all of the self-monitoring functionality to users via their web browser",
+        "documentation" : { },
+        "id" : "3",
+        "name" : "Web Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.wa"
+        },
+        "relationships" : [ {
+          "description" : "CRUD via REST",
+          "destinationId" : "14",
+          "id" : "30",
+          "linkedRelationshipId" : "28",
+          "sourceId" : "3",
+          "technology" : "HTTP/JSON"
+        }, {
+          "description" : "CRUD via REST",
+          "destinationId" : "13",
+          "id" : "31",
+          "linkedRelationshipId" : "28",
+          "sourceId" : "3",
+          "technology" : "HTTP/JSON"
+        } ],
+        "tags" : "Element,Container,Web Application",
+        "technology" : "TypeScript, Node.js, React"
+      }, {
+        "components" : [ {
+          "description" : "Provides REST API server for CRUD ops",
+          "documentation" : { },
+          "id" : "14",
+          "name" : "Server",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ss.api.server"
+          },
+          "relationships" : [ {
+            "description" : "Provides contests CRUD ops",
+            "destinationId" : "18",
+            "id" : "32",
+            "sourceId" : "14",
+            "tags" : "Relationship",
+            "technology" : "Direct call"
+          }, {
+            "description" : "Provides settings CRUD ops",
+            "destinationId" : "19",
+            "id" : "33",
+            "sourceId" : "14",
+            "tags" : "Relationship",
+            "technology" : "Direct call"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "TypeScript, Node.js, Fastify"
+        }, {
+          "description" : "Provides REST API docs",
+          "documentation" : { },
+          "id" : "15",
+          "name" : "Swagger Docs",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ss.api.docs"
+          },
+          "tags" : "Element,Component",
+          "technology" : "Fastify-swagger, OpenAPI"
+        }, {
+          "description" : "Provides contests handlers",
+          "documentation" : { },
+          "group" : "CRUD controllers",
+          "id" : "18",
+          "name" : "Contests",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ss.api.contests"
+          },
+          "relationships" : [ {
+            "description" : "Calls to execute a CRUD request",
+            "destinationId" : "21",
+            "id" : "34",
+            "sourceId" : "18",
+            "tags" : "Relationship",
+            "technology" : "HTTP, RPC, Message"
+          }, {
+            "description" : "Calls to execute a CRUD request",
+            "destinationId" : "20",
+            "id" : "35",
+            "linkedRelationshipId" : "34",
+            "sourceId" : "18",
+            "technology" : "HTTP, RPC, Message"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Fastify"
+        }, {
+          "description" : "Provides personalization handlers for a dashboard appearance",
+          "documentation" : { },
+          "group" : "CRUD controllers",
+          "id" : "19",
+          "name" : "Settings",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ss.api.settings"
+          },
+          "relationships" : [ {
+            "description" : "Calls to execute a CRUD request",
+            "destinationId" : "22",
+            "id" : "38",
+            "sourceId" : "19",
+            "tags" : "Relationship",
+            "technology" : "HTTP, RPC, Message"
+          }, {
+            "description" : "Calls to execute a CRUD request",
+            "destinationId" : "20",
+            "id" : "39",
+            "linkedRelationshipId" : "38",
+            "sourceId" : "19",
+            "technology" : "HTTP, RPC, Message"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Fastify"
+        } ],
+        "description" : "Provides self-monitoring functionality via JSON/HTTPS",
+        "documentation" : { },
+        "id" : "13",
+        "name" : "REST API",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.api"
+        },
+        "relationships" : [ {
+          "description" : "Calls to execute a CRUD request",
+          "destinationId" : "21",
+          "id" : "36",
+          "linkedRelationshipId" : "34",
+          "sourceId" : "13",
+          "technology" : "HTTP, RPC, Message"
+        }, {
+          "description" : "Calls to execute a CRUD request",
+          "destinationId" : "20",
+          "id" : "37",
+          "linkedRelationshipId" : "34",
+          "sourceId" : "13",
+          "technology" : "HTTP, RPC, Message"
+        }, {
+          "description" : "Calls to execute a CRUD request",
+          "destinationId" : "22",
+          "id" : "40",
+          "linkedRelationshipId" : "38",
+          "sourceId" : "13",
+          "technology" : "HTTP, RPC, Message"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "TypeScript, Node.js"
+      }, {
+        "components" : [ {
+          "description" : "Validates and executes contest use cases",
+          "documentation" : { },
+          "id" : "21",
+          "name" : "Contests Service",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ss.core.contests"
+          },
+          "relationships" : [ {
+            "description" : "Gets contests summary or a contest details",
+            "destinationId" : "24",
+            "id" : "41",
+            "sourceId" : "21",
+            "tags" : "Relationship",
+            "technology" : "HTTP/JSON"
+          }, {
+            "description" : "CRUD contests progress",
+            "destinationId" : "23",
+            "id" : "44",
+            "sourceId" : "21",
+            "tags" : "Relationship",
+            "technology" : "SQL"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Validates and executes settings use cases",
+          "documentation" : { },
+          "id" : "22",
+          "name" : "Settings Service",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ss.core.settings"
+          },
+          "relationships" : [ {
+            "description" : "CRUD settings",
+            "destinationId" : "23",
+            "id" : "46",
+            "sourceId" : "22",
+            "tags" : "Relationship",
+            "technology" : "SQL"
+          } ],
+          "tags" : "Element,Component"
+        } ],
+        "description" : "Contains domain models and business logic",
+        "documentation" : { },
+        "id" : "20",
+        "name" : "Core",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.core"
+        },
+        "relationships" : [ {
+          "description" : "Gets contests summary or a contest details",
+          "destinationId" : "24",
+          "id" : "42",
+          "linkedRelationshipId" : "41",
+          "sourceId" : "20",
+          "technology" : "HTTP/JSON"
+        }, {
+          "description" : "CRUD contests progress",
+          "destinationId" : "23",
+          "id" : "45",
+          "linkedRelationshipId" : "44",
+          "sourceId" : "20",
+          "technology" : "SQL"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "TypeScript"
+      }, {
+        "description" : "Stores user information and posted statistics, makes sync and replications",
+        "documentation" : { },
+        "id" : "23",
+        "name" : "Database Schema",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.db"
+        },
+        "tags" : "Element,Container,Database",
+        "technology" : "PostgreSQL"
+      } ],
+      "documentation" : { },
+      "id" : "2",
+      "location" : "Unspecified",
+      "name" : "Performance Self-Monitoring",
+      "properties" : {
+        "structurizr.dsl.identifier" : "ss"
+      },
+      "relationships" : [ {
+        "description" : "Gets contests summary or a contest details",
+        "destinationId" : "24",
+        "id" : "43",
+        "linkedRelationshipId" : "41",
+        "sourceId" : "2",
+        "technology" : "HTTP/JSON"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "documentation" : { },
+      "group" : "Contest Platforms",
+      "id" : "24",
+      "location" : "Unspecified",
+      "name" : "Codewars",
+      "properties" : {
+        "structurizr.dsl.identifier" : "codewars"
+      },
+      "tags" : "Element,Software System,External System"
+    } ]
+  },
+  "name" : "Name",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAgIHVzZXIgPSBwZXJzb24gIlVzZXIiCiAgICAgICAgc3MgPSBzb2Z0d2FyZVN5c3RlbSAiUGVyZm9ybWFuY2UgU2VsZi1Nb25pdG9yaW5nIiB7CiAgICAgICAgICAgIHdhID0gY29udGFpbmVyICJXZWIgQXBwbGljYXRpb24iIHsKICAgICAgICAgICAgICAgIHRhZ3MgIldlYiBBcHBsaWNhdGlvbiIKICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIlR5cGVTY3JpcHQsIE5vZGUuanMsIFJlYWN0IgogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIlByb3ZpZGVzIGFsbCBvZiB0aGUgc2VsZi1tb25pdG9yaW5nIGZ1bmN0aW9uYWxpdHkgdG8gdXNlcnMgdmlhIHRoZWlyIHdlYiBicm93c2VyIgoKICAgICAgICAgICAgICAgIHNlcnZlciA9IGNvbXBvbmVudCAiU2VydmVyIiB7CiAgICAgICAgICAgICAgICAgICAgdGVjaG5vbG9neSAiVHlwZVNjcmlwdCwgTm9kZS5qcywgUmVhY3QiCiAgICAgICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIlByZXBhcmVzIGFuZCBwcm92aWRlcyBIVE1MIG9uIGRlbWFuZCwgcmVzdCBvZiBzdGF0aWMgcmVzb3VyY2VzIChpbWdzLCBDU1MsIEpTIGV0YykgYW5kIHJvdXRpbmciCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgZ3JvdXAgIlBhZ2VzL1JvdXRlcyIgewogICAgICAgICAgICAgICAgICAgIGRhc2hib2FyZCA9IGNvbXBvbmVudCAiRGFzaGJvYXJkIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIlR5cGVTY3JpcHQsIFJlYWN0IgoKICAgICAgICAgICAgICAgICAgICAgICAgdXNlciAtPiB0aGlzICJSZWFkcyBhbnkgdXNlcidzIHBlcmZvcm1hbmNlIHN1bW1hcnkiICJXZWIgQnJvd3NlciIKICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgIHNldHRpbmdzID0gY29tcG9uZW50ICJTZXR0aW5ncyIgewogICAgICAgICAgICAgICAgICAgICAgICB0ZWNobm9sb2d5ICJUeXBlU2NyaXB0LCBSZWFjdCIKCiAgICAgICAgICAgICAgICAgICAgICAgIHVzZXIgLT4gdGhpcyAiU2V0cyB1cCBkYXNoYm9hcmQgd2lkZ2V0cyIgIldlYiBCcm93c2VyIgogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgY29udGVzdHMgPSBjb21wb25lbnQgIkNvbnRlc3RzIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIlR5cGVTY3JpcHQsIFJlYWN0IgoKICAgICAgICAgICAgICAgICAgICAgICAgdXNlciAtPiB0aGlzICJSZWFkcyBhbnkgdXNlcidzIGNvbnRlc3RzIHN0YXRpc3RpY3Mgb3IgcmVhZHMvdXBkYXRlcyBpdHMgb3duIiAiV2ViIEJyb3dzZXIvSFRNTCBmb3JtcyIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGFwaSA9IGNvbnRhaW5lciAiUkVTVCBBUEkiIHsKICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIlR5cGVTY3JpcHQsIE5vZGUuanMiCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiUHJvdmlkZXMgc2VsZi1tb25pdG9yaW5nIGZ1bmN0aW9uYWxpdHkgdmlhIEpTT04vSFRUUFMiCgogICAgICAgICAgICAgICAgc2VydmVyID0gY29tcG9uZW50ICJTZXJ2ZXIiIHsKICAgICAgICAgICAgICAgICAgICB0ZWNobm9sb2d5ICJUeXBlU2NyaXB0LCBOb2RlLmpzLCBGYXN0aWZ5IgogICAgICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJQcm92aWRlcyBSRVNUIEFQSSBzZXJ2ZXIgZm9yIENSVUQgb3BzIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGRvY3MgPSBjb21wb25lbnQgIlN3YWdnZXIgRG9jcyIgewogICAgICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIkZhc3RpZnktc3dhZ2dlciwgT3BlbkFQSSIKICAgICAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiUHJvdmlkZXMgUkVTVCBBUEkgZG9jcyIKCiAgICAgICAgICAgICAgICAgICAgdXNlciAtPiB0aGlzICJSZWFkcyB0aGUgZG9jdW1lbnRhdGlvbiIgIldlYiBCcm93c2VyIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGdyb3VwICJDUlVEIGNvbnRyb2xsZXJzIiB7CiAgICAgICAgICAgICAgICAgICAgY29udGVzdHMgPSBjb21wb25lbnQgIkNvbnRlc3RzIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIkZhc3RpZnkiCiAgICAgICAgICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJQcm92aWRlcyBjb250ZXN0cyBoYW5kbGVycyIKICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgc2V0dGluZ3MgPSBjb21wb25lbnQgIlNldHRpbmdzIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIkZhc3RpZnkiCiAgICAgICAgICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJQcm92aWRlcyBwZXJzb25hbGl6YXRpb24gaGFuZGxlcnMgZm9yIGEgZGFzaGJvYXJkIGFwcGVhcmFuY2UiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICBjb3JlID0gY29udGFpbmVyICJDb3JlIiB7CiAgICAgICAgICAgICAgICB0ZWNobm9sb2d5ICJUeXBlU2NyaXB0IgogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIkNvbnRhaW5zIGRvbWFpbiBtb2RlbHMgYW5kIGJ1c2luZXNzIGxvZ2ljIgoKICAgICAgICAgICAgICAgIGNvbnRlc3RzID0gY29tcG9uZW50ICJDb250ZXN0cyBTZXJ2aWNlIiB7CiAgICAgICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIlZhbGlkYXRlcyBhbmQgZXhlY3V0ZXMgY29udGVzdCB1c2UgY2FzZXMiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgc2V0dGluZ3MgPSBjb21wb25lbnQgIlNldHRpbmdzIFNlcnZpY2UiIHsKICAgICAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiVmFsaWRhdGVzIGFuZCBleGVjdXRlcyBzZXR0aW5ncyB1c2UgY2FzZXMiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGRiID0gY29udGFpbmVyICJEYXRhYmFzZSBTY2hlbWEiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIkRhdGFiYXNlIgogICAgICAgICAgICAgICAgdGVjaG5vbG9neSAiUG9zdGdyZVNRTCIKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJTdG9yZXMgdXNlciBpbmZvcm1hdGlvbiBhbmQgcG9zdGVkIHN0YXRpc3RpY3MsIG1ha2VzIHN5bmMgYW5kIHJlcGxpY2F0aW9ucyIKICAgICAgICAgICAgfQogICAgICAgIH0KCgogICAgICAgIGdyb3VwICJDb250ZXN0IFBsYXRmb3JtcyIgewogICAgICAgICAgICBjb2Rld2FycyA9IHNvZnR3YXJlU3lzdGVtICJDb2Rld2FycyIgewogICAgICAgICAgICAgICAgdGFncyAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgICAgICB9CiAgICAgICAgfQoKICAgICAgICAvLyBXZWIgQXBwbGljYXRpb24gQ29udGFpbmVyCiAgICAgICAgc3Mud2EuZGFzaGJvYXJkIC0+IHNzLndhLnNlcnZlciAiR2V0cyBIVE1MIGFuZCBzdGF0aWMgcmVzb3VyY2VzIiAiSFRUUC9TdHJlYW0iCiAgICAgICAgc3Mud2Euc2V0dGluZ3MgLT4gc3Mud2Euc2VydmVyICJHZXRzIEhUTUwgYW5kIHN0YXRpYyByZXNvdXJjZXMiICJIVFRQL1N0cmVhbSIKICAgICAgICBzcy53YS5jb250ZXN0cyAtPiBzcy53YS5zZXJ2ZXIgIkdldHMgSFRNTCBhbmQgc3RhdGljIHJlc291cmNlcyIgIkhUVFAvU3RyZWFtIgogICAgICAgIHNzLndhLnNlcnZlciAtPiBzcy5hcGkuc2VydmVyICJDUlVEIHZpYSBSRVNUIiAiSFRUUC9KU09OIgoKICAgICAgICAvLyBSRVNUIEFQSSBDb250YWluZXIKICAgICAgICBzcy5hcGkuc2VydmVyIC0+IHNzLmFwaS5jb250ZXN0cyAiUHJvdmlkZXMgY29udGVzdHMgQ1JVRCBvcHMiICJEaXJlY3QgY2FsbCIKICAgICAgICBzcy5hcGkuc2VydmVyIC0+IHNzLmFwaS5zZXR0aW5ncyAiUHJvdmlkZXMgc2V0dGluZ3MgQ1JVRCBvcHMiICJEaXJlY3QgY2FsbCIKICAgICAgICBzcy5hcGkuY29udGVzdHMgLT4gc3MuY29yZS5jb250ZXN0cyAiQ2FsbHMgdG8gZXhlY3V0ZSBhIENSVUQgcmVxdWVzdCIgIkhUVFAsIFJQQywgTWVzc2FnZSIKICAgICAgICBzcy5hcGkuc2V0dGluZ3MgLT4gc3MuY29yZS5zZXR0aW5ncyAiQ2FsbHMgdG8gZXhlY3V0ZSBhIENSVUQgcmVxdWVzdCIgIkhUVFAsIFJQQywgTWVzc2FnZSIKCiAgICAgICAgLy8gQ29yZSBjb250YWluZXIKICAgICAgICBzcy5jb3JlLmNvbnRlc3RzIC0+IGNvZGV3YXJzICJHZXRzIGNvbnRlc3RzIHN1bW1hcnkgb3IgYSBjb250ZXN0IGRldGFpbHMiICJIVFRQL0pTT04iCiAgICAgICAgc3MuY29yZS5jb250ZXN0cyAtPiBzcy5kYiAiQ1JVRCBjb250ZXN0cyBwcm9ncmVzcyIgIlNRTCIKICAgICAgICBzcy5jb3JlLnNldHRpbmdzIC0+IHNzLmRiICJDUlVEIHNldHRpbmdzIiAiU1FMIgogICAgfQoKICAgIHZpZXdzIHsKICAgICAgICBzeXN0ZW1Db250ZXh0IHNzICJEaWFncmFtMSIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIHNzICJEaWFncmFtMiIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IHNzLndhICJXZWJfQXBwbGljYXRpb25fQ29tcG9uZW50cyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IHNzLmFwaSAiUkVTVF9BUElfQ29tcG9uZW50cyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IHNzLmNvcmUgIkNvcmVfQ29tcG9uZW50cyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgZWxlbWVudCAiRWxlbWVudCIgewogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjOWIxOTFmCiAgICAgICAgICAgICAgICBzaGFwZSBwZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2JhMWUyNQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZDkyMzJiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXh0ZXJuYWwgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM4Yzg0OTYKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJXZWIgQXBwbGljYXRpb24iIHsKICAgICAgICAgICAgICAgIHNoYXBlIFdlYkJyb3dzZXIKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KCiAgICBjb25maWd1cmF0aW9uIHsKICAgICAgICBzY29wZSBzb2Z0d2FyZXN5c3RlbQogICAgfQoKfQ=="
+  },
+  "views" : {
+    "componentViews" : [ {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "3",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Web_Application_Components",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "10"
+      }, {
+        "id" : "12"
+      }, {
+        "id" : "17"
+      }, {
+        "id" : "25"
+      }, {
+        "id" : "26"
+      }, {
+        "id" : "27"
+      }, {
+        "id" : "29"
+      }, {
+        "id" : "6"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "13",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "14",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "15",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "19",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "20",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "REST_API_Components",
+      "order" : 4,
+      "relationships" : [ {
+        "id" : "16"
+      }, {
+        "id" : "30"
+      }, {
+        "id" : "32"
+      }, {
+        "id" : "33"
+      }, {
+        "id" : "35"
+      }, {
+        "id" : "39"
+      }, {
+        "id" : "7"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "20",
+      "elements" : [ {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "21",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "22",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "23",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "24",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Core_Components",
+      "order" : 5,
+      "relationships" : [ {
+        "id" : "36"
+      }, {
+        "id" : "40"
+      }, {
+        "id" : "41"
+      }, {
+        "id" : "44"
+      }, {
+        "id" : "46"
+      } ]
+    } ],
+    "configuration" : {
+      "branding" : { },
+      "lastSavedView" : "Diagram1",
+      "metadataSymbols" : "SquareBrackets",
+      "styles" : {
+        "elements" : [ {
+          "color" : "#ffffff",
+          "tag" : "Element"
+        }, {
+          "background" : "#9b191f",
+          "shape" : "Person",
+          "tag" : "Person"
+        }, {
+          "background" : "#ba1e25",
+          "tag" : "Software System"
+        }, {
+          "background" : "#d9232b",
+          "tag" : "Container"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        }, {
+          "background" : "#8c8496",
+          "color" : "#ffffff",
+          "tag" : "External System"
+        }, {
+          "shape" : "WebBrowser",
+          "tag" : "Web Application"
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 1650,
+        "width" : 3820
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 199,
+        "y" : 165
+      }, {
+        "id" : "3",
+        "x" : 899,
+        "y" : 515
+      }, {
+        "id" : "13",
+        "x" : 1649,
+        "y" : 515
+      }, {
+        "id" : "20",
+        "x" : 2399,
+        "y" : 515
+      }, {
+        "id" : "23",
+        "x" : 3149,
+        "y" : 515
+      }, {
+        "id" : "24",
+        "x" : 3149,
+        "y" : 1115
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "Diagram2",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "17",
+        "vertices" : [ {
+          "x" : 1349,
+          "y" : 365
+        } ]
+      }, {
+        "id" : "31"
+      }, {
+        "id" : "37"
+      }, {
+        "id" : "42"
+      }, {
+        "id" : "45"
+      }, {
+        "id" : "7"
+      } ],
+      "softwareSystemId" : "2"
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 824,
+        "width" : 2320
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 200,
+        "y" : 165
+      }, {
+        "id" : "2",
+        "x" : 900,
+        "y" : 215
+      }, {
+        "id" : "24",
+        "x" : 1650,
+        "y" : 215
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "Diagram1",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "43"
+      }, {
+        "id" : "8"
+      } ],
+      "softwareSystemId" : "2"
+    } ]
+  }
+}
