@@ -1,0 +1,4 @@
+[plantuml, reads_any_users_performance_summary, svg]
+----
+include::reads_any_users_performance_summary.puml[]
+----

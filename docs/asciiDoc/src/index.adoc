@@ -1,0 +1,30 @@
+= The Application Docs
+:toc:
+:hide-uri-scheme:
+:includedir: .
+
+== Actors
+
+=== User
+A common actor of the app
+
+== Use Cases
+
+Hanging from...
+
+== Activity Diagrams
+=== User
+==== Summary browsing
+
+.See diagram
+[%collapsible]
+====
+include::{includedir}/activity_diagrams/user/reads_any_users_performance_summary.adoc[]
+====
+
+== Architecture as C4 diagram
+https://localhost:8080/workspace
+
+== Error Codes
+
+

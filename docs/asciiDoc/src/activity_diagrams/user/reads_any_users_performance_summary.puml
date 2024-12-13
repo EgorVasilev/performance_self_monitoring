@@ -1,0 +1,24 @@
+@startuml
+title Reads any user's performance summary
+
+start
+
+if (User exists?) then (yes)
+  :Get user's settings;
+
+  if (Filter settings list) then (Public)
+
+  #palegreen:Map settings list to summary list;
+
+  else (Private)
+    :The Setting is filtered out;
+    detach
+  endif
+
+else (no)
+  #pink:Go to 404;
+  detach
+endif
+
+stop
+@enduml

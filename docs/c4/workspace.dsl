@@ -10,12 +10,7 @@ workspace "Name" "Description" {
                 technology "TypeScript, Node.js, React"
                 description "Provides all of the self-monitoring functionality to users via their web browser"
 
-                server = component "Server" {
-                    technology "TypeScript, Node.js, React"
-                    description "Prepares and provides HTML on demand, rest of static resources (imgs, CSS, JS etc) and routing"
-                }
-
-                group "Pages/Routes" {
+                group "Routes/Static Providers (Server)" {
                     dashboard = component "Dashboard" {
                         technology "TypeScript, React"
 
@@ -40,11 +35,6 @@ workspace "Name" "Description" {
                 technology "TypeScript, Node.js"
                 description "Provides self-monitoring functionality via JSON/HTTPS"
 
-                server = component "Server" {
-                    technology "TypeScript, Node.js, Fastify"
-                    description "Provides REST API server for CRUD ops"
-                }
-
                 docs = component "Swagger Docs" {
                     technology "Fastify-swagger, OpenAPI"
                     description "Provides REST API docs"
@@ -52,7 +42,7 @@ workspace "Name" "Description" {
                     user -> this "Reads the documentation" "Web Browser"
                 }
 
-                group "CRUD controllers" {
+                group "CRUD controllers (Server)" {
                     contests = component "Contests" {
                         technology "Fastify"
                         description "Provides contests handlers"
@@ -61,6 +51,11 @@ workspace "Name" "Description" {
                    settings = component "Settings" {
                         technology "Fastify"
                         description "Provides personalization handlers for a dashboard appearance"
+                    }
+
+                   user = component "User" {
+                        technology "Fastify"
+                        description "Provides handlers for a user's data"
                     }
                 }
             }
@@ -75,6 +70,10 @@ workspace "Name" "Description" {
 
                 settings = component "Settings Service" {
                     description "Validates and executes settings use cases"
+                }
+
+                user = component "User Service" {
+                    description "Validates and executes User use cases"
                 }
             }
 
@@ -93,16 +92,17 @@ workspace "Name" "Description" {
         }
 
         // Web Application Container
-        ss.wa.dashboard -> ss.wa.server "Gets HTML and static resources" "HTTP/Stream"
-        ss.wa.settings -> ss.wa.server "Gets HTML and static resources" "HTTP/Stream"
-        ss.wa.contests -> ss.wa.server "Gets HTML and static resources" "HTTP/Stream"
-        ss.wa.server -> ss.api.server "CRUD via REST" "HTTP/JSON"
+        ss.wa.dashboard -> ss.api.settings "CRUD via REST" "HTTP/JSON"
+        ss.wa.dashboard -> ss.api.user "CRUD via REST" "HTTP/JSON"
+
+        ss.wa.settings -> ss.api.settings "CRUD via REST" "HTTP/JSON"
+        ss.wa.contests -> ss.api.contests "CRUD via REST" "HTTP/JSON"
 
         // REST API Container
-        ss.api.server -> ss.api.contests "Provides contests CRUD ops" "Direct call"
-        ss.api.server -> ss.api.settings "Provides settings CRUD ops" "Direct call"
-        ss.api.contests -> ss.core.contests "Calls to execute a CRUD request" "HTTP, RPC, Message"
-        ss.api.settings -> ss.core.settings "Calls to execute a CRUD request" "HTTP, RPC, Message"
+
+        ss.api.contests -> ss.core.contests "Calls to execute a CRUD request" "HTTP, RPC, AMQP"
+        ss.api.settings -> ss.core.settings "Calls to execute a CRUD request" "HTTP, RPC, AMQP"
+        ss.api.user -> ss.core.user "Calls to execute a CRUD request" "HTTP, RPC, AMQP"
 
         // Core container
         ss.core.contests -> codewars "Gets contests summary or a contest details" "HTTP/JSON"
@@ -133,6 +133,17 @@ workspace "Name" "Description" {
 
         component ss.core "Core_Components" {
             include *
+            autoLayout lr
+        }
+
+        dynamic ss.wa {
+            title "Reads any users's performance summary"
+            user -> ss.wa.dashboard "Goes to a user's dashboard page"
+            ss.wa.dashboard -> ss.api.user "Checks if requested User exists"
+            ss.api.user -> ss.wa.dashboard "Response with User data(nullable)"
+            ss.wa.dashboard -> ss.api.settings "Asks for User's settings"
+            ss.api.settings -> ss.wa.dashboard "Provides public settings list"
+
             autoLayout lr
         }
 
