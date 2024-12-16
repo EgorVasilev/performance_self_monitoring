@@ -2,13 +2,16 @@
 title Reads any user's performance summary
 
 start
+:Receive UserID;
 
 if (User exists?) then (yes)
   :Get user's settings;
 
   if (Filter settings list) then (Public)
 
-  #palegreen:Map settings list to summary list;
+  :Map settings list to summary list;
+
+  #palegreen:Return summary list;
 
   else (Private)
     :The Setting is filtered out;

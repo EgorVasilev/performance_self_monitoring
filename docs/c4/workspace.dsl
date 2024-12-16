@@ -10,7 +10,7 @@ workspace "Name" "Description" {
                 technology "TypeScript, Node.js, React"
                 description "Provides all of the self-monitoring functionality to users via their web browser"
 
-                group "Routes/Static Providers (Server)" {
+                group "Routes Providers (Server Side Router)" {
                     dashboard = component "Dashboard" {
                         technology "TypeScript, React"
 
@@ -27,6 +27,10 @@ workspace "Name" "Description" {
                         technology "TypeScript, React"
 
                         user -> this "Reads any user's contests statistics or reads/updates its own" "Web Browser/HTML forms"
+                    }
+
+                    404 = component "404" {
+                        technology "TypeScript, React"
                     }
                 }
             }
@@ -94,6 +98,7 @@ workspace "Name" "Description" {
         // Web Application Container
         ss.wa.dashboard -> ss.api.settings "CRUD via REST" "HTTP/JSON"
         ss.wa.dashboard -> ss.api.user "CRUD via REST" "HTTP/JSON"
+        ss.wa.dashboard -> ss.wa.404 "Asks for 404 content if can't define a dashboard" "Direct Call"
 
         ss.wa.settings -> ss.api.settings "CRUD via REST" "HTTP/JSON"
         ss.wa.contests -> ss.api.contests "CRUD via REST" "HTTP/JSON"
@@ -108,6 +113,7 @@ workspace "Name" "Description" {
         ss.core.contests -> codewars "Gets contests summary or a contest details" "HTTP/JSON"
         ss.core.contests -> ss.db "CRUD contests progress" "SQL"
         ss.core.settings -> ss.db "CRUD settings" "SQL"
+        ss.core.user -> ss.db "CRUD user data" "SQL"
     }
 
     views {
@@ -137,14 +143,30 @@ workspace "Name" "Description" {
         }
 
         dynamic ss.wa {
-            title "Reads any users's performance summary"
+            title "Reads any users's performance summary: Success Case"
             user -> ss.wa.dashboard "Goes to a user's dashboard page"
             ss.wa.dashboard -> ss.api.user "Checks if requested User exists"
+            ss.api.user -> ss.core.user "Checks if requested User exists"
+            ss.core.user -> ss.db "Reads the requested user data"
+            ss.core.user -> ss.api.user "Returns user data OR null"
             ss.api.user -> ss.wa.dashboard "Response with User data(nullable)"
             ss.wa.dashboard -> ss.api.settings "Asks for User's settings"
             ss.api.settings -> ss.wa.dashboard "Provides public settings list"
+            ss.wa.dashboard -> user "Provides rendered dashboard"
+        }
 
-            autoLayout lr
+        dynamic ss.wa {
+            title "Reads any users's performance summary: Undefined user Case"
+            user -> ss.wa.dashboard "Goes to a user's dashboard page"
+            ss.wa.dashboard -> ss.api.user "Checks if requested User exists"
+            ss.api.user -> ss.core.user "Checks if requested User exists"
+            ss.core.user -> ss.db "Reads the requested user data"
+            ss.core.user -> ss.api.user "Returns NULLISH user data with APP Error code"
+            ss.api.user -> ss.wa.dashboard "Returns NULLISH user data with APP Error code"
+            ss.wa.dashboard -> ss.wa.404 "Requests for APP Error code description"
+            ss.wa.dashboard -> user "Renders meaningful 404 content with APP Error descriptions"
+
+            autoLayout
         }
 
         styles {

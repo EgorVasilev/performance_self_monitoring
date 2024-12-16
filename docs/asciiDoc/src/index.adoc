@@ -13,6 +13,9 @@ A common actor of the app
 Hanging from...
 
 == Activity Diagrams
+
+The Diagrams show key features of the app. Bear in mind they mostly belong to **Core container**, so diagrams use Core's namespace and context.
+
 === User
 ==== Summary browsing
 
