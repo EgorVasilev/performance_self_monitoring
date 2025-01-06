@@ -151,8 +151,14 @@ workspace "Name" "Description" {
             ss.core.user -> ss.api.user "Returns user data OR null"
             ss.api.user -> ss.wa.dashboard "Response with User data(nullable)"
             ss.wa.dashboard -> ss.api.settings "Asks for User's settings"
+
+            ss.api.settings -> ss.core.settings "Asks for User's settings"
+            ss.wa.dashboard -> ss.api.settings "Asks for User's settings"
+
             ss.api.settings -> ss.wa.dashboard "Provides public settings list"
             ss.wa.dashboard -> user "Provides rendered dashboard"
+
+            autoLayout
         }
 
         dynamic ss.wa {

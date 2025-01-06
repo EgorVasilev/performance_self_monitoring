@@ -10,5 +10,7 @@ FROM base AS dev
 
 COPY . .
 
-CMD npm run dev
+RUN npm install -g typescript@5.7.2
+RUN npm install
+
 CMD bash

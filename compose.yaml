@@ -19,16 +19,22 @@ services:
     ports:
       - 3000:3000
       - 9222:9222
-    user: "1000" # uses default non-root user to make produce artifacts commonly accessible
     volumes:
-      - type: bind
-        source: .
-        target: /usr/src/app
+      - .:/usr/src/app/
+      - /usr/src/app/node_modules
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /usr/src/app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
   docs_arch_c4:
     image: structurizr/lite:2024.12.07
     ports:
       - 8080:8080
-    user: "1000" # uses default non-root user to make produce artifacts commonly accessible
     volumes:
       - type: bind
         source: ./docs/c4
