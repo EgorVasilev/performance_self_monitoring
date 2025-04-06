@@ -4,10 +4,15 @@
  * @param onError
  * @param onComplete
  */
-export function task<T extends Array<unknown>, U>(task: (...args: T) => Promise<U>, onError: (code: number) => void, onComplete: (result: U) => U) {
-    return (...args: T): Promise<U> => task(...args).then((result) => {
-        onComplete(result);
+export function task<T extends Array<unknown>, U>(
+    task: (...args: T) => Promise<U>,
+    onError: (code: number) => void,
+    onComplete: (result: U) => U,
+) {
+    return (...args: T): Promise<U> =>
+        task(...args).then((result) => {
+            onComplete(result);
 
-        return result;
-    })
+            return result;
+        });
 }

@@ -1,6 +1,6 @@
 export type ProblemSolvingMetric = {
     id: 1;
-    type: 'problemSolving'
-}
+    type: 'problemSolving';
+};
 
-export type PerformanceMetric = ProblemSolvingMetric
+export type PerformanceMetric = ProblemSolvingMetric;

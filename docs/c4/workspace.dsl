@@ -23,10 +23,10 @@ workspace "Name" "Description" {
                         user -> this "Sets up dashboard widgets" "Web Browser"
                     }
 
-                    contests = component "Contests" {
+                    problemSolving = component "Problem Solving" {
                         technology "TypeScript, React"
 
-                        user -> this "Reads any user's contests statistics or reads/updates its own" "Web Browser/HTML forms"
+                        user -> this "Reads any user's problem solving statistics or reads/updates its own" "Web Browser/HTML forms"
                     }
 
                     404 = component "404" {
@@ -47,9 +47,9 @@ workspace "Name" "Description" {
                 }
 
                 group "CRUD controllers (Server)" {
-                    contests = component "Contests" {
+                    problemSolving = component "Problem Solving" {
                         technology "Fastify"
-                        description "Provides contests handlers"
+                        description "Provides problemSolving handlers"
                     }
 
                    settings = component "Settings" {
@@ -68,7 +68,7 @@ workspace "Name" "Description" {
                 technology "TypeScript"
                 description "Contains domain models and business logic"
 
-                contests = component "Contests Service" {
+                problemSolving = component "Problem Solving Service" {
                     description "Validates and executes contest use cases"
                 }
 
@@ -101,17 +101,17 @@ workspace "Name" "Description" {
         ss.wa.dashboard -> ss.wa.404 "Asks for 404 content if can't define a dashboard" "Direct Call"
 
         ss.wa.settings -> ss.api.settings "CRUD via REST" "HTTP/JSON"
-        ss.wa.contests -> ss.api.contests "CRUD via REST" "HTTP/JSON"
+        ss.wa.problemSolving -> ss.api.problemSolving "CRUD via REST" "HTTP/JSON"
 
         // REST API Container
 
-        ss.api.contests -> ss.core.contests "Calls to execute a CRUD request" "HTTP, RPC, AMQP"
+        ss.api.problemSolving -> ss.core.problemSolving "Calls to execute a CRUD request" "HTTP, RPC, AMQP"
         ss.api.settings -> ss.core.settings "Calls to execute a CRUD request" "HTTP, RPC, AMQP"
         ss.api.user -> ss.core.user "Calls to execute a CRUD request" "HTTP, RPC, AMQP"
 
         // Core container
-        ss.core.contests -> codewars "Gets contests summary or a contest details" "HTTP/JSON"
-        ss.core.contests -> ss.db "CRUD contests progress" "SQL"
+        ss.core.problemSolving -> codewars "Gets problem solving details" "HTTP/JSON"
+        ss.core.problemSolving -> ss.db "CRUD problemSolving progress" "SQL"
         ss.core.settings -> ss.db "CRUD settings" "SQL"
         ss.core.user -> ss.db "CRUD user data" "SQL"
     }

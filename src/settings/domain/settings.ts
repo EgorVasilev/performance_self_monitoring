@@ -1,23 +1,22 @@
-import {UserId} from "../../actors/user/domain/user";
-import {PerformanceMetric} from "./metrics";
-
+import { UserId } from '../../actors/user/domain/user';
+import { PerformanceMetric } from './metrics';
 
 type LayoutColumn = {
-    contentId: number
-}
+    contentId: number;
+};
 
-type LayoutRow = [LayoutColumn, LayoutColumn, LayoutColumn]
+type LayoutRow = [LayoutColumn, LayoutColumn, LayoutColumn];
 
 export type Layout = {
-    rows: LayoutRow
-}
+    rows: LayoutRow;
+};
 
 export type SettingsId = number;
 
 export type Settings = {
     id: SettingsId;
     enabledMetrics: PerformanceMetric[];
-    usersAllowedToSeeMetrics: UserId[]
-    usersDeniedToSeeMetrics: UserId[]
-    layout: Layout
-}
+    usersAllowedToSeeMetrics: UserId[];
+    usersDeniedToSeeMetrics: UserId[];
+    layout: Layout;
+};

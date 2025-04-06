@@ -1,29 +1,29 @@
-export type ProblemId = number
+export type ProblemId = number;
+
+export type ProblemLink = string;
 
 type CommonProblem = {
-    readonly id: ProblemId;
-    readonly timeSpentToSolve: number; // seconds
-    readonly postedAt: Date;
-    readonly link: string;
-    comment: string;
+    comment?: string;
+    id: ProblemId;
+    link: ProblemLink;
     metricId: 1;
-}
+    name: string;
+    postedAt: Date;
+    state: 'rejected' | 'pending' | 'solved';
+    timeSpentToSolve: number; // seconds
+};
 
-type AbandonedProblem = CommonProblem & {
-    state: 'abandoned'
-}
+export type CodewarsProblemDifficulty = 8 | 7 | 6 | 5 | 4 | 3 | 2 | 1;
 
-type SolvedProblem = CommonProblem & {
-    state: 'solved'
-}
-
-type CodewarsProblem = (AbandonedProblem | SolvedProblem) & {
+export type CodewarsProblem = CommonProblem & {
     readonly platformId: 1;
-    readonly difficulty: number;
+    readonly difficulty: CodewarsProblemDifficulty;
+};
+
+export type Problem = CodewarsProblem;
+
+export const NULL_ID = 0;
+
+export function isNullProblem(problem: CommonProblem) {
+    return problem.id === NULL_ID;
 }
-
-export type Problem = CodewarsProblem
-
-
-
-

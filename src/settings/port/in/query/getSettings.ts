@@ -1,3 +1,3 @@
-import {Settings, SettingsId} from "../../../domain/settings";
+import { Settings, SettingsId } from '../../../domain/settings';
 
-export type GetSettingsQuery = (settingsId: SettingsId) => Promise<Settings>
+export type GetSettingsQuery = (settingsId: SettingsId) => Promise<Settings>;

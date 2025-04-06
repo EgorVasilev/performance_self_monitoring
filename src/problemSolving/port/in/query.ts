@@ -1,10 +1,12 @@
-import {UserId} from "../../../actors/user/domain/user";
+import { UserId } from '../../../actors/user/domain/user';
 
-import {ProblemId, Problem} from "../../domain/problem";
-import {CodewarsProfile, ProblemSolvingProfiles} from "../../domain/profile";
+import { ProblemId, Problem, CodewarsProblem } from '../../domain/problem';
+import { CodewarsProfile, ProblemSolvingProfiles } from '../../domain/profile';
 
-export type GetProblemQuery = (id: ProblemId)  => Promise<Problem>
+export type GetCodewarsProblem = (id: ProblemId) => Promise<CodewarsProblem>;
+export type GetAllCodewarsProblems = () => Promise<CodewarsProblem[]>;
+export type GetCodewarsProfile = (forUser: UserId) => Promise<CodewarsProfile>;
 
-export type GetCodewarsProfile = (forUser: UserId) => Promise<CodewarsProfile>
-
-export type GetAllProblemSolvingProfiles = (forUser: UserId) => Promise<ProblemSolvingProfiles>
+export type GetAllProblemSolvingProfiles = (
+    forUser: UserId,
+) => Promise<ProblemSolvingProfiles>;

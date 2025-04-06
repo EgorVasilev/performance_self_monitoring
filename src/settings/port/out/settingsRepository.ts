@@ -1,5 +1,5 @@
-import {Settings, SettingsId} from "../../domain/settings";
+import { Settings, SettingsId } from '../../domain/settings';
 
 export interface SettingsRepository {
-    getSettings: (settingsId: SettingsId) => Promise<Settings>
+    getSettings: (settingsId: SettingsId) => Promise<Settings>;
 }
